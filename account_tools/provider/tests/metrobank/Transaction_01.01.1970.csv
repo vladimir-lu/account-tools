@@ -1,0 +1,4 @@
+Date,Reference,Transaction Type,Money In, Money Out
+01/01/1970,1 JAN 70 FOOBAR LTD,Card Purchase,0.00,23.60
+13/01/1970,EE N T-MOBILE,Direct Debit,0.00,10.00
+15/01/1970,,Credit Adjustment,0.00,0.40
