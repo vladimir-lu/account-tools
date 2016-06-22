@@ -1,7 +1,7 @@
 from setuptools import setup, find_packages
 
 setup(name='account-tools',
-      version='0.0.1',
+      version='0.0.2',
       description='Tools for dealing with statements from different bank account providers',
       url='https://github.com/vladimir-lu/account-tools',
       author='Vladimir Lushnikov',

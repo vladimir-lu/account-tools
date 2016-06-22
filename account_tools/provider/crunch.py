@@ -7,7 +7,7 @@ from decimal import Decimal
 from collections import namedtuple
 
 
-class StatementEntry(namedtuple('_StatementEntry', ['Date', 'Reference', 'Payment_In', 'Payment_Out', 'Balance'])):
+class StatementEntry(namedtuple('_StatementEntry', ['Date', 'Reference', 'Paid_In', 'Paid_Out', 'Balance'])):
     pass
 
 
@@ -20,12 +20,12 @@ def from_unified(entry):
     """
     date = entry.date.strftime('%d/%m/%Y')
     ref = entry.ref
-    (payment_out, payment_in) = entry.amount_as_debit_credit()
-    payment_in = payment_in or ''
-    payment_out = payment_out or ''
+    (paid_out, paid_in) = entry.amount_as_debit_credit()
+    paid_in = paid_in or ''
+    paid_out = paid_out or ''
     balance = entry.balance or ''
 
-    return StatementEntry(date, ref, str(payment_in), str(payment_out), str(balance))
+    return StatementEntry(date, ref, str(paid_in), str(paid_out), str(balance))
 
 
 def _fixup_balance(entries, prompt_fun):
@@ -39,6 +39,7 @@ def _fixup_balance(entries, prompt_fun):
 
     assert prompt_fun
 
+    # FIXME there should be no assumption that the statement entries are sorted or if they are then make it really clear how
     start_or_close = prompt_fun("No balance was found. Would you like to provide a (s)tarting or (c)losing balance?")
     if start_or_close not in ('s', 'c'):
         raise ValueError("Response '{}' was not understood".format(start_or_close))
